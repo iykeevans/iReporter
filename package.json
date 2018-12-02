@@ -4,7 +4,7 @@
   "description": "Corruption is a huge bane to Africa’s development. African countries must develop novel and  localised solutions that will curb this menace, hence the birth of iReporter. iReporter enables  any/every citizen to bring any form of corruption to the notice of appropriate authorities and the  general public. Users can also report on things that needs government intervention",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "nyc mocha --require @babel/register server/test/app.js --exit",
     "start": "nodemon --require @babel/register server/app",
     "clean": "rm -rf dist",
     "build": "npm run clean && babel server --out-dir dist -s",
@@ -29,10 +29,14 @@
     "eslint": "^5.3.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.14.0",
-    "nodemon": "^1.18.7"
+    "mocha": "^5.2.0",
+    "nodemon": "^1.18.7",
+    "nyc": "^13.1.0"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
+    "chai": "^4.2.0",
+    "chai-http": "^4.2.0",
     "express": "^4.16.4"
   }
 }
