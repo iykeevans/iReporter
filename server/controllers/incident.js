@@ -25,6 +25,17 @@ class Incidents {
       }))
       .catch(err => res.status(500).json({ status: 500, message: err.message }));
   }
+
+  static updateLocation(req, res) {
+    const { id } = req.params;
+    const { location } = req.body;
+    incident.editLocation(id, location)
+      .then(data => res.status(202).json({
+        status: 202,
+        data: [{ id: data.id, message: 'Updated red-flag record\'s location' }],
+      }))
+      .catch(err => res.status(500).json({ status: 500, message: err.message }));
+  }
 }
 
 export default Incidents;
