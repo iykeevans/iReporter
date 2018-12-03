@@ -18,6 +18,19 @@ describe('Test for All GET requests', () => {
         });
     });
   });
+
+  describe('Test for GET / red-flags/:id', () => {
+    it('should return an error', (done) => {
+      chai.request(app)
+        .get('/api/v1/red-flags/1')
+        .set('Accept', 'application/json')
+        .end((err, res) => {
+          res.should.have.status(500);
+          res.body.should.be.an('object');
+          done();
+        });
+    });
+  });
 });
 
 describe('Test for All PATCH request', () => {

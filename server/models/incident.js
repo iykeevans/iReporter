@@ -23,6 +23,18 @@ class Incidents {
   }
 
   /**
+   * @returns {promise} resolves one red-flag/intervention
+   */
+  findOne(id) {
+    return new Promise((resolve, reject) => {
+      const { incidents } = this;
+      helper.find(id, incidents)
+        .then(data => resolve(data))
+        .catch(err => reject(err));
+    });
+  }
+
+  /**
    * @returns {promise} resolves edit of red-flag/intervention
    */
   editComment(id, comment) {
