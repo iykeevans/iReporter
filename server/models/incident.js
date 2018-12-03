@@ -40,6 +40,21 @@ class Incidents {
   /**
    * @returns {promise} resolves edit of red-flag/intervention
    */
+  editLocation(id, location) {
+    return new Promise((resolve, reject) => {
+      const { incidents } = this;
+      helper.find(id, incidents)
+        .then((data) => {
+          data.location = location;
+          resolve(data);
+        })
+        .catch(err => reject(err));
+    });
+  }
+
+  /**
+   * @returns {promise} newly created incident of red-flag/intervention
+   */
   createIncident(incident) {
     return new Promise((resolve) => {
       const { incidents } = this;

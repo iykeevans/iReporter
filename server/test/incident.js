@@ -63,6 +63,32 @@ describe('Test for All PATCH request', () => {
         });
     });
   });
+
+  describe('Test for PATCH / red-flags/:id/location', () => {
+    it('should return an error', (done) => {
+      const values = { location: 'egbeda roads ehn' };
+      chai.request(app)
+        .patch('/api/v1/red-flags/2/location')
+        .send(values)
+        .set('Accept', 'application/json')
+        .end((err, res) => {
+          res.should.have.status(500);
+          done();
+        });
+    });
+
+    it('should return Updated red-flag record\'s location', (done) => {
+      const values = { location: 'Ketu' };
+      chai.request(app)
+        .patch('/api/v1/red-flags/1/location')
+        .send(values)
+        .set('Accept', 'application/json')
+        .end((err, res) => {
+          res.should.have.status(202);
+          done();
+        });
+    });
+  });
 });
 
 describe('Test for POST request', () => {
