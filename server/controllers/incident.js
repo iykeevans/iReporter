@@ -7,11 +7,22 @@ class Incidents {
       .catch(err => res.status(500).json({ status: 500, message: err.message }));
   }
 
+  static addIncident(req, res) {
+    incident.createIncident(req.body)
+      .then(data => res.status(201).json({
+        status: 201,
+        data: [{ id: data.id, message: 'Created red-flag record' }],
+      }));
+  }
+
   static updateComment(req, res) {
     const { id } = req.params;
     const { comment } = req.body;
     incident.editComment(id, comment)
-      .then(data => res.json({ status: 202, data: [data] }))
+      .then(data => res.status(202).json({
+        status: 202,
+        data: [{ id: data.id, message: 'Updated red-flag record\'s comment' }],
+      }))
       .catch(err => res.status(500).json({ status: 500, message: err.message }));
   }
 }
