@@ -3,7 +3,20 @@ import incident from '../models/incident';
 class Incidents {
   static getFlags(req, res) {
     incident.findAll()
-      .then(data => res.json({ status: 200, data }))
+      .then(data => res.json({
+        status: 200,
+        data,
+      }))
+      .catch(err => res.status(500).json({ status: 500, message: err.message }));
+  }
+
+  static getFlag(req, res) {
+    const { id } = req.params;
+    incident.findOne(id)
+      .then(data => res.json({
+        status: 200,
+        data: [data],
+      }))
       .catch(err => res.status(500).json({ status: 500, message: err.message }));
   }
 
