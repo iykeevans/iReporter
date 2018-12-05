@@ -90,6 +90,21 @@ class Incidents {
       resolve(newIncident);
     });
   }
+
+  /**
+   * @returns {promise} newly created incident of red-flag/intervention
+   */
+  removeOne(id) {
+    return new Promise((resolve, reject) => {
+      const { incidents } = this;
+      const deleted = incidents.findIndex(incident => incident.id === Number(id));
+      if (deleted === -1) {
+        reject(Error(`No incident with #id of ${id} exists`));
+      }
+      incidents.splice(deleted, 1);
+      resolve('red-flag record has been deleted');
+    });
+  }
 }
 
 export default new Incidents();

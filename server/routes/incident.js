@@ -13,4 +13,6 @@ router.patch('/red-flags/:id/location', incident.updateLocation);
 
 router.post('/red-flags', incident.addIncident);
 
+router.delete('/red-flags/:id', incident.removeIncident);
+
 export default router;

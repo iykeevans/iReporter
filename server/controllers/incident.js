@@ -49,6 +49,16 @@ class Incidents {
       }))
       .catch(err => res.status(500).json({ status: 500, message: err.message }));
   }
+
+  static removeIncident(req, res) {
+    const { id } = req.params;
+    incident.removeOne(id)
+      .then(data => res.status(202).json({
+        status: 202,
+        data: [{ id, message: data }],
+      }))
+      .catch(err => res.status(500).json({ status: 500, message: err.message }));
+  }
 }
 
 export default Incidents;
